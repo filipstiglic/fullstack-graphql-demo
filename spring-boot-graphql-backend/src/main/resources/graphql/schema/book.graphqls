@@ -1,0 +1,21 @@
+type Book {
+    id: ID!
+    title: String!
+    isbn: String!
+    pageCount: Int
+    author: Author
+}
+
+#will extend the query type defined in author.graphql in order to contain the find and count authors
+extend type Query {
+    books: [Book]!
+    countBooks: Long!
+    book(id: ID): Book
+}
+
+#same as for the query extension
+extend type Mutation {
+    addBook(title: String!, isbn: String!, pageCount: Int, author: ID!) : Book!
+    deleteBook(id: ID!) : Boolean
+    updateBookPageCount(pageCount: Int!, id: ID!) : Book!
+}
