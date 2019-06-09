@@ -37,6 +37,7 @@ Hlavne dependencie poskytujuce graphql funcionalitu:
 		</dependency>
 
 Graphql endpoint sa nachadza na: [http://localhost:8080/graphql](http://localhost:8080/graphql)
+
 Automaticky je generovana definicia celej schemy ktora sa nachadza na: [http://localhost:8080/graphql/schema.json](http://localhost:8080/graphql/schema.json)
 
 
@@ -75,5 +76,50 @@ Pricom je potrebne zadat aj query variables:
       
 
 ### react-graphql-frontend
+
+Typescript react fe vytvoreny cez create-react-app.
+
+Na jeho spravne fungovanie, je okrem spustenia jeho samotneho (yarn start) potrebne spustit aj backend - staci sa hodit do toho build foldra cez cmdline a spustit: java -jar graphql-backend-1.0.0.jar
+
+Co sa tyka samotneho FE vyuziva okrem react-appollo-boostra na graphql [react-apollo-hooks](https://github.com/trojanowski/react-apollo-hooks) a automaticke generovanie typov cez [graphql code generator](https://graphql-code-generator.com/) a vyuziva automaticky generovanu schemu backedom na [http://localhost:8080/graphql/schema.json](http://localhost:8080/graphql/schema.json)
+
+Generator je nakonfigurovany v **graphql-codegen.yml** s nasledovnym obsahom:
+
+	overwrite: true
+	schema: "http://localhost:8080/graphql"
+	generates:
+	  src/generated/graphql.tsx:
+	    plugins:
+	      - "typescript"
+	      - "typescript-operations"
+	      - "typescript-react-apollo"
+	      
+Pricom v **src/generated/graphql.tsx** sa nachadzaju vygenerovane TS typy.
+
+V app.tsx je ukazane zadefinovanie initial statu(skrz in memory cache) a naslednej definicie graphql klienta:
+
+	const cache = new InMemoryCache();
+
+	//Create initial state
+	cache.writeData({
+	    data: {
+		__typename: "data",
+		auth: {
+		    __typename: "auth",
+		    username: null,
+		    accessToken: null,
+		    refreshToken: null,
+		    expirationTime: null
+		},
+		books: {}
+	    }
+	});
+
+	const client = new ApolloClient({ cache: cache, uri: "http://localhost:8080/graphql"});
+	
+Aplikacia ma zadefinovanu default "non-private" cast priamo na [http://localhost:3000/](http://localhost:3000/) 	
+
+
+
 
 
