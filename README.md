@@ -96,7 +96,7 @@ Generator je nakonfigurovany v **graphql-codegen.yml** s nasledovnym obsahom:
 	      
 Pricom v **src/generated/graphql.tsx** sa nachadzaju vygenerovane TS typy.
 
-V app.tsx je ukazane zadefinovanie initial statu(skrz in memory cache) a naslednej definicie graphql klienta:
+V **App.tsx** je ukazane zadefinovanie initial statu(skrz in memory cache) a naslednej definicie graphql klienta:
 
 	const cache = new InMemoryCache();
 
@@ -117,7 +117,31 @@ V app.tsx je ukazane zadefinovanie initial statu(skrz in memory cache) a nasledn
 
 	const client = new ApolloClient({ cache: cache, uri: "http://localhost:8080/graphql"});
 	
-Aplikacia ma zadefinovanu default "non-private" cast priamo na [http://localhost:3000/](http://localhost:3000/) 	
+Aplikacia ma zadefinovanu default "non-private" cast priamo na [http://localhost:3000/](http://localhost:3000/) a secured cast nachadzajucu sa na [http://localhost:3000/secured](http://localhost:3000/secured) endpointe.
+
+Po spusteni aplikacie mame moznost zobrazit **"secured content"** na ktory ked klikneme, sme presmerovani na **login page**
+
+Login page po stlaceni tlacidla **log me in** fake **accesToken** v state. Nasledne presmeruje na **secure page** kde sa zobrazi "tajny" zoznam kniziek.
+
+Handling celej security ma na starosti **HOC secured** ktory si cez **hook useQuery**:
+
+	const {data} = useQuery(GET_AUTH_DATA);
+	
+Spustenim query: 
+
+	export const GET_AUTH_DATA = gql`
+	  {
+	    auth @client {
+	       accessToken 
+	    }
+	  }
+	`;
+
+Ziska hodnotu z globalneho statu (preto **@client** aby sa nevolalo api) a nasledne urcuje presmerovanie na **secure** alebo **login** page.
+
+Tot vse :) Enjoy
+	
+
 
 
 
