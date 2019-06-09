@@ -14,11 +14,11 @@ Pri starte sa spusti in memory H2 do ktorej liquibase vytvori schemu, tabulky a 
 
 DB migracie pre liqibase su v **src/main/resources/db**
 
-Definicie pre graphql su v **src/main/resources/graphql
+Definicie pre graphql su v **src/main/resources/graphql**
 
 Hlavne dependencie poskytujuce graphql funcionalitu:
 
-    <dependency>
+    		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>5.9.0</version>
