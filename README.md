@@ -36,8 +36,14 @@ Hlavne dependencie poskytujuce graphql funcionalitu:
 			<scope>runtime</scope>
 		</dependency>
 
+Graphql endpoint sa nachadza na: [http://localhost:8080/graphql](http://localhost:8080/graphql)
+Automaticky je generovana definicia celej schemy ktora sa nachadza na: [http://localhost:8080/graphql/schema.json](http://localhost:8080/graphql/schema.json)
+
+
+
 
 Backend obsahuje graphiql ktory je pristupny na: [http://localhost:8080/graphiql](http://localhost:8080/graphiql)
+
 Pricom data je mozne ziskat nasledovnou query:
 
       {
@@ -60,8 +66,14 @@ Tak isto je mozne vlozit napr autora spustenim nasledovnej mutacie:
         }
       }
 
-Pricom je potrebne zadat aj query variables
+Pricom je potrebne zadat aj query variables:
+      
       {
         "firstName": "Jozko",
         "lastName": "Mrkvicka"
       }
+      
+
+### react-graphql-frontend
+
+
