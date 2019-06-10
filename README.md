@@ -10,7 +10,7 @@ Projekt obsahuje 3 adresare:
 ### spring-boot-graphql-backend
 
 Klasicky spring boot projekt ktory obsahuje databazu knih a autorov + prislusne graphql api.
-Pri starte sa spusti in memory H2 do ktorej liquibase vytvori schemu, tabulky a data.
+Pri starte sa spusti in memory H2(v postgresql mode) do ktorej liquibase vytvori schemu, tabulky a data - potom pracuje dalej s touto in memory - nie je potrebne nic dalsie vytvarat, len spustit
 
 DB migracie pre liqibase su v **src/main/resources/db**
 
@@ -18,7 +18,7 @@ Definicie pre graphql su v **src/main/resources/graphql**
 
 Hlavne dependencie poskytujuce graphql funcionalitu:
 
-    <dependency>
+    	<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>5.9.0</version>
