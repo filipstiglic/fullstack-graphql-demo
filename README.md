@@ -18,7 +18,7 @@ Definicie pre graphql su v **src/main/resources/graphql**
 
 Hlavne dependencie poskytujuce graphql funcionalitu:
 
-    		<dependency>
+    <dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>5.9.0</version>
@@ -121,7 +121,7 @@ Aplikacia ma zadefinovanu default "non-private" cast priamo na [http://localhost
 
 Po spusteni aplikacie mame moznost zobrazit **"secured content"** na ktory ked klikneme, sme presmerovani na **login page**
 
-Login page po stlaceni tlacidla **log me in** fake **accesToken** v state. Nasledne presmeruje na **secure page** kde sa zobrazi "tajny" zoznam kniziek.
+Login page po stlaceni tlacidla **log me in** sa vlozi fake **accesToken** do state. Nasledne presmeruje na **secure page** kde sa zobrazi "tajny" zoznam kniziek z BE.
 
 Handling celej security ma na starosti **HOC secured** ktory si cez **hook useQuery**:
 
